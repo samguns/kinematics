@@ -1,0 +1,6 @@
+<launch>
+
+  <node name="moveit_demo" pkg="kuka_arm" type="moveit_demo" output="screen">
+  </node>
+
+</launch>
