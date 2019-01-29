@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: panda_arm
+    relative_path: urdf/panda.urdf.xacro
+    xacro_args: "--inorder "
+  SRDF:
+    relative_path: config/panda_arm.srdf
+  CONFIG:
+    author_name: Gang Wang
+    author_email: wang.vai@gmail.com
+    generated_timestamp: 1548728355

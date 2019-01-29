@@ -1,0 +1,226 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="panda_arm">
+  <xacro:property name="arm_id" value="panda"/>
+  <xacro:property name="description_pkg" value="panda_arm"/>
+
+    <link name="${arm_id}_link0">
+      <visual>
+        <geometry>
+          <mesh filename="package://${description_pkg}/meshes/visual/link0.dae"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://${description_pkg}/meshes/collision/link0.stl"/>
+        </geometry>
+      </collision>
+    </link>
+    <link name="${arm_id}_link1">
+      <visual>
+        <geometry>
+          <mesh filename="package://${description_pkg}/meshes/visual/link1.dae"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://${description_pkg}/meshes/collision/link1.stl"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="${arm_id}_joint1" type="revolute">
+      <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.8973" soft_upper_limit="2.8973"/>
+      <origin rpy="0 0 0" xyz="0 0 0.333"/>
+      <parent link="${arm_id}_link0"/>
+      <child link="${arm_id}_link1"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="87" lower="-2.8973" upper="2.8973" velocity="2.1750"/>
+    </joint>
+
+    <link name="${arm_id}_link2">
+      <visual>
+        <geometry>
+          <mesh filename="package://panda_arm/meshes/visual/link2.dae"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://panda_arm/meshes/collision/link2.stl"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="${arm_id}_joint2" type="revolute">
+      <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-1.7628" soft_upper_limit="1.7628"/>
+      <origin rpy="${-pi/2} 0 0" xyz="0 0 0"/>
+      <parent link="${arm_id}_link1"/>
+      <child link="${arm_id}_link2"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="87" lower="-1.7628" upper="1.7628" velocity="2.1750"/>
+    </joint>
+    
+    <link name="${arm_id}_link3">
+      <visual>
+        <geometry>
+          <mesh filename="package://panda_arm/meshes/visual/link3.dae"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://panda_arm/meshes/collision/link3.stl"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="${arm_id}_joint3" type="revolute">
+      <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.8973" soft_upper_limit="2.8973"/>
+      <origin rpy="${pi/2} 0 0" xyz="0 -0.316 0"/>
+      <parent link="${arm_id}_link2"/>
+      <child link="${arm_id}_link3"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="87" lower="-2.8973" upper="2.8973" velocity="2.1750"/>
+    </joint>
+    
+    <link name="${arm_id}_link4">
+      <visual>
+        <geometry>
+          <mesh filename="package://panda_arm/meshes/visual/link4.dae"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://panda_arm/meshes/collision/link4.stl"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="${arm_id}_joint4" type="revolute">
+      <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-3.0718" soft_upper_limit="-0.0698"/>
+      <origin rpy="${pi/2} 0 0" xyz="0.0825 0 0"/>
+      <parent link="${arm_id}_link3"/>
+      <child link="${arm_id}_link4"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="87" lower="-3.0718" upper="-0.0698" velocity="2.1750"/>
+    </joint>
+    
+    <link name="${arm_id}_link5">
+      <visual>
+        <geometry>
+          <mesh filename="package://panda_arm/meshes/visual/link5.dae"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://panda_arm/meshes/collision/link5.stl"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="${arm_id}_joint5" type="revolute">
+      <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.8973" soft_upper_limit="2.8973"/>
+      <origin rpy="${-pi/2} 0 0" xyz="-0.0825 0.384 0"/>
+      <parent link="${arm_id}_link4"/>
+      <child link="${arm_id}_link5"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="12" lower="-2.8973" upper="2.8973" velocity="2.6100"/>
+    </joint>
+    
+    <link name="${arm_id}_link6">
+      <visual>
+        <geometry>
+          <mesh filename="package://panda_arm/meshes/visual/link6.dae"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://panda_arm/meshes/collision/link6.stl"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="${arm_id}_joint6" type="revolute">
+      <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-0.0175" soft_upper_limit="3.7525"/>
+      <origin rpy="${pi/2} 0 0" xyz="0 0 0"/>
+      <parent link="${arm_id}_link5"/>
+      <child link="${arm_id}_link6"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="12" lower="-0.0175" upper="3.7525" velocity="2.6100"/>
+    </joint>
+
+    <!--Gripper links-->
+    <link name="gripper_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.3"/>
+      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0002" iyz="0" izz="0.0001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://panda_arm/meshes/gripper/gripper_base.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://panda_arm/meshes/gripper/gripper_base.dae"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="right_gripper_finger_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.1"/>
+      <inertia ixx="0.002" ixy="0" ixz="0" iyy="0.0002" iyz="0" izz="0.0002"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://panda_arm/meshes/gripper/finger_right.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://panda_arm/meshes/gripper/finger_right_collision.dae"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="left_gripper_finger_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.1"/>
+      <inertia ixx="0.002" ixy="0" ixz="0" iyy="0.0002" iyz="0" izz="0.0002"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://panda_arm/meshes/gripper/finger_left.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://panda_arm/meshes/gripper/finger_left_collision.dae"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="right_gripper_finger_joint" type="prismatic">
+    <origin rpy="0 0 0" xyz="0.15 -0.0725 0" />
+    <parent link="gripper_link" />
+    <child link="right_gripper_finger_link" />
+    <axis xyz="0 1 0" />
+    <limit effort="100" lower="-0.01" upper="0.06" velocity="0.05" />
+    <dynamics damping="0.7" />
+  </joint>
+  <joint name="left_gripper_finger_joint" type="prismatic">
+    <origin rpy="0 0 0" xyz="0.15 0.0725 0" />
+    <parent link="gripper_link" />
+    <child link="left_gripper_finger_link" />
+    <axis xyz="0 -1 0" />
+    <limit effort="100" lower="-0.01" upper="0.06" velocity="0.05" />
+    <dynamics damping="0.7" />
+  </joint>
+  <joint name="gripper_joint" type="fixed">
+    <parent link="${arm_id}_link6"/>
+    <child link="gripper_link"/>
+    <origin xyz="0.11 0 0" rpy="0 0 0"/><!--0.087-->
+    <axis xyz="0 1 0" />
+  </joint>
+
+</robot>

@@ -1,0 +1,1 @@
+rosrun moveit_kinematics create_ikfast_moveit_plugin.py panda_arm arm_group panda_arm_ikfast_plugin /home/robond/catkin_ws/src/kinematics/panda_arm_ikfast_plugin/src/panda_arm_arm_group_ikfast_solver.cpp

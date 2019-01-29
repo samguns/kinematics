@@ -1,0 +1,13 @@
+controller_list:
+  - name: fake_hand_controller
+    joints:
+      - left_gripper_finger_joint
+      - right_gripper_finger_joint
+  - name: fake_arm_group_controller
+    joints:
+      - panda_joint1
+      - panda_joint2
+      - panda_joint3
+      - panda_joint4
+      - panda_joint5
+      - panda_joint6
